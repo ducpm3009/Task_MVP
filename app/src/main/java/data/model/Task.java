@@ -12,9 +12,9 @@ public class Task {
     private String mTitle;
     private int mID;
 
-    public Task(String mTitle , int mID) {
+    public Task(String mTitle) {
         this.mTitle = mTitle;
-        this.mID = mID;
+        //        this.mID = mID;
     }
 
     public String getTitle() {

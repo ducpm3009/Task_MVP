@@ -13,7 +13,7 @@ public class RemoteTaskDataSource implements TaskDataSource {
     }
 
     @Override
-    public void editTask(Task task, Callback<Boolean> callback) {
+    public void editTask(int id, String title, Callback<Boolean> callback) {
     }
 
     @Override
