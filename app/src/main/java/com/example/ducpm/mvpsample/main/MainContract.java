@@ -11,7 +11,7 @@ public interface MainContract {
     interface View {
         void onAddSuccess(Task task);
 
-        void onDeleteSuccess();
+        void onDeleteSuccess(int id);
 
         void onEditSuccess(Task task);
 
@@ -46,5 +46,7 @@ public interface MainContract {
         void getTaskByID(List<Task> tasks, int id, String msg);
 
         void getTasks();
+
+        void detachView();
     }
 }

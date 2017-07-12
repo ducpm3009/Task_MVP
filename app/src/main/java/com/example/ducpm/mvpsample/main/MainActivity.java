@@ -1,20 +1,19 @@
 package com.example.ducpm.mvpsample.main;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
+import android.widget.EditText;
 import com.example.ducpm.mvpsample.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import data.model.Task;
 import data.source.task.TaskRepository;
 import data.source.task.local.TaskLocalDataSource;
 import data.source.task.remote.RemoteTaskDataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements MainContract.View, View.OnClickListener {
@@ -51,8 +50,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDeleteSuccess() {
+    public void onDeleteSuccess(int id) {
 
+        mTaskAdapter.notifyItemChanged(id);
+
+        mTaskAdapter.replaceData(mTaskList);
     }
 
     @Override
@@ -107,10 +109,20 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_button:
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                View dialogView = getLayoutInflater().inflate(R.layout.item_dialog, null);
+                final EditText editTitle = dialogView.findViewById(R.id.edit_title);
+                builder.setView(dialogView).setTitle("Add Task");
+                builder.create().show();
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.detachView();
+        super.onDestroy();
     }
 }

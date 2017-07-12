@@ -1,9 +1,6 @@
 package data.source.task;
 
-import java.util.List;
-
 import data.model.Task;
-import data.source.task.local.TaskLocalDataSource;
 
 /**
  * Created by ducpm on 09/07/17.
@@ -55,6 +52,9 @@ public class TaskRepository implements TaskDataSource {
 
     @Override
     public void getTaskByName(String name, Callbacks<Task> callbacks) {
+        mLocalDataSource.getTaskByName(name , callbacks);
+        mRemoteDataSource.getTaskByName(name , callbacks);
+
 
     }
 }

@@ -14,7 +14,6 @@ public class Task {
 
     public Task(String mTitle) {
         this.mTitle = mTitle;
-        //        this.mID = mID;
     }
 
     public String getTitle() {
