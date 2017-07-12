@@ -60,7 +60,7 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onSuccess(Integer data) {
-                mView.onDeleteSuccess();
+                mView.onDeleteSuccess(data);
             }
 
             @Override
@@ -102,5 +102,10 @@ public class MainPresenter implements MainContract.Presenter {
                 mView.onGetTasksFailed("");
             }
         });
+    }
+
+    @Override
+    public void detachView() {
+        this.mView = null;
     }
 }
